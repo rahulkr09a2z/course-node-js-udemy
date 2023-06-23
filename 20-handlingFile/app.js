@@ -1,4 +1,5 @@
 const path = require("path");
+const dotenv = require("dotenv");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -12,7 +13,9 @@ const multer = require("multer");
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 
-const MONGODB_URI =""
+dotenv.config();
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const app = express();
 const store = new MongoDBStore({
@@ -51,6 +54,7 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(
   session({
     secret: "my secret",
