@@ -197,7 +197,6 @@ exports.deletePost = (req, res, next) => {
       res.status(200).json({ message: "Deleted Post." });
     })
     .catch((err) => {
-      console.log("zzz err", err);
       if (!err.statusCode) {
         err.statusCode = 500;
       }

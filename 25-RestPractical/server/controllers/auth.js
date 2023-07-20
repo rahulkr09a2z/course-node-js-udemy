@@ -60,7 +60,38 @@ exports.login = (req, res, next) => {
         SECRET,
         { expiresIn: "1h" }
       );
-      res.status(200).json({token:token,userId:loadedUser._id.toString()})
+      res.status(200).json({ token: token, userId: loadedUser._id.toString() });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
+
+exports.getStatus = (req, res, next) => {
+  User.findById(req.userId)
+    .then((user) => {
+      res.status(200).json({ status: user.status });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
+
+exports.updateStatus = (req, res, next) => {
+  const { status } = req.body;
+  User.findById(req.userId)
+    .then((user) => {
+      user.status = status;
+      return user.save();
+    })
+    .then((result) => {
+      res.status(200).json({ message: "Status Updated" });
     })
     .catch((err) => {
       if (!err.statusCode) {
