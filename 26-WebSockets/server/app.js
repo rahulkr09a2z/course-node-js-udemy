@@ -4,7 +4,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
-
+// const cors = require('cors')
+ 
 const PORT = 8080;
 const app = express();
 dotenv.config();
@@ -31,6 +32,7 @@ const feedRoutes = require("./routes/feed");
 const authRoutes = require("./routes/auth");
 
 // app.use(bodyParser.urlencoded()) //--->x-www-form-urlencoded <form>
+// app.use(cors())w
 app.use(bodyParser.json()); //---> application JSON
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
@@ -60,7 +62,11 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(process.env.MONGODB_URI)
   .then((res) => {
-    app.listen(PORT);
+    const server = app.listen(PORT);
+    const io = require('./socket').init(server);
+    io.on('connection',socket=>{
+      console.log('Client connected')
+    })
     console.log("DB connected");
   })
   .catch((err) => console.error(err));
