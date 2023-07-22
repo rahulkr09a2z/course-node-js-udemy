@@ -6,32 +6,29 @@ const SECRET = process.env.JWT_SECRET;
 
 module.exports = async (req, res, next) => {
   const authHeader = req.get("Authorization");
-  function notAuthHandler() {
-    const error = new Error("Not authenticated.");
-    error.statusCode = 401;
-    throw error;
-  }
   if (!authHeader) {
-    notAuthHandler();
+    req.isAuth = false;
+    return next();
   }
+
   const token = req.get("Authorization").split(" ")[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, SECRET);
+    decodedToken = jwt.verify(token, process.env.JWT_SECRET);
   } catch (err) {
-    err.statusCode = 500;
-    throw err;
+    req.isAuth = false;
+    return next();
   }
   if (!decodedToken) {
-    notAuthHandler();
+    req.isAuth = false;
+    return next();
   }
   const user = await User.findById(decodedToken.userId);
   if (!user) {
-    const error = new Error("User Not Found");
-    error.statusCode = 404;
-    throw error;
+    req.isAuth = false;
+    return next();
   }
-
   req.userId = decodedToken.userId;
+  req.isAuth = true;
   next();
 };
