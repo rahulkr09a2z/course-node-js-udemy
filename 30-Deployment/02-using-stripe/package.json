@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "start-server": "node app.js"
+    "start": "PORT=3000 NODE_ENV=production MONGO_USER=rMongoCluster0 MONGO_PASSWORD=DhF78EmsKgBLNsKw MONGO_DEFAULT_DATABASE=shop STRIPE_KEY=sk_test_51NM7pdSAmXZrffpv7segvwvWhWxDrzbP3X51N2uNK8WUj4iVbMG3q4zqSUxwCDFXrNrRX0IOT8Hgfx9cjyJWMQcy0019aMh84k node app.js",
+    "start-server": "node app.js",
+    "start:dev": "nodemon app.js"
   },
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
+    "helmet": "^7.0.0",
     "mongodb": "^3.1.6",
     "mongoose": "^5.2.17",
     "multer": "^1.4.0",

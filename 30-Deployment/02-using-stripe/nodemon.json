@@ -1,0 +1,9 @@
+{
+  "env": {
+    "MONGO_USER": "rMongoCluster0",
+    "MONGO_PASSWORD": "DhF78EmsKgBLNsKw",
+    "MONGO_DEFAULT_DATABASE": "shop",
+    "STRIPE_KEY": "sk_test_51NM7pdSAmXZrffpv7segvwvWhWxDrzbP3X51N2uNK8WUj4iVbMG3q4zqSUxwCDFXrNrRX0IOT8Hgfx9cjyJWMQcy0019aMh84k",
+    "PORT": 3000
+  }
+}
