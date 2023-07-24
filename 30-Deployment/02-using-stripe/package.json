@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Complete Node.js Guide",
   "main": "app.js",
+  "engines": {
+    "node": "16.13.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "PORT=3000 NODE_ENV=production MONGO_USER=rMongoCluster0 MONGO_PASSWORD=DhF78EmsKgBLNsKw MONGO_DEFAULT_DATABASE=shop STRIPE_KEY=sk_test_51NM7pdSAmXZrffpv7segvwvWhWxDrzbP3X51N2uNK8WUj4iVbMG3q4zqSUxwCDFXrNrRX0IOT8Hgfx9cjyJWMQcy0019aMh84k node app.js",
@@ -17,6 +20,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.0.3",
     "csurf": "^1.9.0",
@@ -28,6 +32,7 @@
     "helmet": "^7.0.0",
     "mongodb": "^3.1.6",
     "mongoose": "^5.2.17",
+    "morgan": "^1.10.0",
     "multer": "^1.4.0",
     "mysql2": "^1.6.1",
     "nodemailer": "^4.6.8",
