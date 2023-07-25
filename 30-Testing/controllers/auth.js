@@ -56,7 +56,7 @@ exports.login = async (req, res, next) => {
         email: loadedUser.email,
         userId: loadedUser._id.toString()
       },
-      'somesupersecretsecret',
+      'S0m3s3cr3T',
       { expiresIn: '1h' }
     );
     res.status(200).json({ token: token, userId: loadedUser._id.toString() });
