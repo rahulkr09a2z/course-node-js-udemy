@@ -13,3 +13,8 @@ app.use(todosRoutes.routes());
 app.use(todosRoutes.allowedMethods());
 
 await app.listen({ port: 3000 });
+
+
+/**
+ * Command ---> deno run --allow-net app.ts
+ */
