@@ -17,7 +17,7 @@ const resHandler = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  res.sendFile(path.join(__dirname, "my-page.html"));
+  //   res.sendFile(path.join(__dirname, "my-page.html"));
 };
 
 // module.exports = resHandler;
